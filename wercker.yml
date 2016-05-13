@@ -13,7 +13,7 @@ build:
         code: cp bin/linux_amd64/pith "$WERCKER_OUTPUT_DIR"
 
 deploy:
-    box: quay.io/jacobstr/godal
+    box: http://quay.io/jacobstr/godal
     steps:
     - internal/docker-push:
         username: $QUAY_USERNAME
