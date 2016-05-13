@@ -1,0 +1,24 @@
+build:
+  box: golang
+  steps:
+    - wercker/setup-go-workspace:
+        package-dir: github.com/jacobstr/pith
+
+    - script:
+        name: go build
+        code: ./build
+
+    - script:
+        name: copy binary
+        code: cp bin/linux_amd64/pith "$WERCKER_OUTPUT_DIR"
+
+deploy:
+    box: quay.io/jacobstr/godal
+    steps:
+    - internal/docker-push:
+        username: $QUAY_USERNAME
+        password: $QUAY_PASSWORD
+        cmd: /pipeline/source/pith
+        tag: $WERCKER_GIT_COMMIT
+        repository: quay.io/jacobstr/pith
+        registry: https://quay.io
