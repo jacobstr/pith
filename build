@@ -4,7 +4,7 @@
 
 operating_systems=( "darwin" "linux" )
 arch="amd64"
-cmd="farva"
+cmd="pith"
 cmd_pkg="github.com/jacobstr/pith/cmd"
 
 for os in "${operating_systems[@]}"; do
