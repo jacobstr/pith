@@ -25,6 +25,11 @@ func main() {
 	cfg := DefaultConfig
 	mux := http.NewServeMux()
 
+	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		return
+	})
+
 	// Handles raw payloads.
 	mux.HandleFunc("/raw", func(w http.ResponseWriter, r *http.Request) {
 		// Read contents of request into a temporary file to be used as ogr2ogr
